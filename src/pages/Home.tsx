@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   useLazyGetUserReposQuery,
   useSearchUsersQuery,
-} from '../store/gitHub.api';
+} from '../store/github.api';
 import useDebounce from '../hooks/useDebounce';
 import { IRepo } from '../models/models';
 import RepoCard from '../components/RepoCard';
@@ -47,6 +47,7 @@ const Home = () => {
         {isDropdownOpen && (
           <ul className="absolute top-[42px] left-0 right-0 max-h-[200px] shadow-md overflow-y-scroll bg-white">
             {areUsersLoading && <li className="text-center">Loading...</li>}
+
             {users?.map((user) => (
               <li
                 key={user.id}
@@ -66,6 +67,7 @@ const Home = () => {
           {areReposLoading && (
             <p className="text-center">Repos are loading...</p>
           )}
+
           {repos?.map((repo: IRepo) => <RepoCard repo={repo} key={repo.id} />)}
         </div>
       </div>
