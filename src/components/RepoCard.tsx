@@ -4,17 +4,17 @@ import { IRepo } from '../models/models';
 
 const RepoCard = ({ repo }: { repo: IRepo }) => {
   const favourites = useAppSelector((state) => state.github.favourites);
-  const { addFavorite, removeFavorite } = useActions();
-  const isFavorite = favourites.includes(repo.html_url);
+  const { addFavourite, removeFavourite } = useActions();
+  const isFavourite = favourites.includes(repo.html_url);
 
-  const addToFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const addToFavourite = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    addFavorite(repo.html_url);
+    addFavourite(repo.html_url);
   };
 
-  const removeFromFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const removeFromFavourite = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    removeFavorite(repo.html_url);
+    removeFavourite(repo.html_url);
   };
 
   return (
@@ -29,17 +29,17 @@ const RepoCard = ({ repo }: { repo: IRepo }) => {
           {repo?.description}
         </p>
 
-        {!isFavorite && (
+        {!isFavourite && (
           <button
-            onClick={addToFavorite}
+            onClick={addToFavourite}
             className="py-2 px-4 bg-yellow-400 rounded hover:shadow-md transition"
           >
             Add
           </button>
         )}
-        {isFavorite && (
+        {isFavourite && (
           <button
-            onClick={removeFromFavorite}
+            onClick={removeFromFavourite}
             className="py-2 px-4 bg-red-400 rounded hover:shadow-md transition"
           >
             Remove

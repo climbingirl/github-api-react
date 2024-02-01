@@ -7,21 +7,21 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  favourites: [],
+  favourites: JSON.parse(localStorage.getItem(GITHUB_API_FAV_KEY) ?? '[]'),
 };
 
 const githubSlice = createSlice({
   name: 'github',
   initialState,
   reducers: {
-    addFavorite: (state, action: PayloadAction<string>) => {
+    addFavourite: (state, action: PayloadAction<string>) => {
       state.favourites.push(action.payload);
       localStorage.setItem(
         GITHUB_API_FAV_KEY,
         JSON.stringify(state.favourites)
       );
     },
-    removeFavorite: (state, action: PayloadAction<string>) => {
+    removeFavourite: (state, action: PayloadAction<string>) => {
       state.favourites = state.favourites.filter(
         (favorite) => favorite !== action.payload
       );
